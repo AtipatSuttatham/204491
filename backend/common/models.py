@@ -73,9 +73,13 @@ class SoftDeleteModel(models.Model):
         abstract = True
 
     def delete(self, using=None, keep_parents=False, deleted_by=None):
+        # ใช้กับ Submission / QuizAttempt / Score ซึ่ง inherit TimeStampedModel ด้วยเสมอ
         self.deleted_at = timezone.now()
         self.deleted_by = deleted_by
-        self.save(using=using, update_fields=["deleted_at", "deleted_by", "updated_at"])
+        fields = ["deleted_at", "deleted_by"]
+        if any(f.name == "updated_at" for f in self._meta.fields):
+            fields.append("updated_at")
+        self.save(using=using, update_fields=fields)
 
     def hard_delete(self, using=None, keep_parents=False):
         return super().delete(using=using, keep_parents=keep_parents)
