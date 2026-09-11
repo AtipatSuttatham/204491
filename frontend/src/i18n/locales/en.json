@@ -1,0 +1,20 @@
+{
+  "app": {
+    "name": "LMS"
+  },
+  "common": {
+    "loading": "Loading...",
+    "language": "Language"
+  },
+  "home": {
+    "title": "Welcome to LMS",
+    "subtitle": "Online learning management system",
+    "backendStatus": "Backend status",
+    "backendOk": "Connected",
+    "backendError": "Connection failed — check that the backend is running"
+  },
+  "notFound": {
+    "title": "Page not found",
+    "backHome": "Back to home"
+  }
+}

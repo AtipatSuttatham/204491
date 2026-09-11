@@ -15,8 +15,8 @@
 ## โครงสร้าง repo
 
 ```
-/backend    Django + DRF        (ดู backend/README.md)
-/frontend   React + Vite + TS   (จะเพิ่มใน chunk ถัดไป)
+/backend    Django + DRF                      (ดู backend/README.md)
+/frontend   React + Vite + TS + Tailwind v4    (ดู frontend/README.md)
 /docs       เอกสารออกแบบฐานข้อมูล (database.md v1.3 — freeze แล้ว)
 ```
 
@@ -24,9 +24,21 @@
 
 ```bash
 docker compose up -d          # Postgres (host port 5433)
+
+# backend
 cd backend && cp .env.example .env && uv sync
 uv run python manage.py migrate
-uv run python manage.py runserver
+uv run python manage.py runserver     # http://localhost:8000
+
+# frontend (terminal อีกอัน)
+cd frontend && cp .env.example .env.local && pnpm install
+pnpm dev                              # http://localhost:5173
 ```
+
+## CI
+
+`.github/workflows/ci.yml` รันอัตโนมัติตอน push/PR เข้า `main`:
+- **backend**: `pytest` + `ruff check` + `ruff format --check` (มี Postgres 16 เป็น service container)
+- **frontend**: `tsc --noEmit` + `eslint` + `vitest`
 
 รายละเอียดข้อกำหนดโปรเจกต์: [`CLAUDE.md`](./CLAUDE.md)

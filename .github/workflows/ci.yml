@@ -60,4 +60,34 @@ jobs:
       - name: Run tests
         run: uv run pytest
 
-  # frontend job จะเพิ่มตอน scaffold /frontend (tsc --noEmit + eslint + vitest ตาม CLAUDE.md)
+  frontend:
+    name: frontend (tsc + eslint + vitest)
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: frontend
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Install pnpm
+        uses: pnpm/action-setup@v4
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: "24"
+          cache: pnpm
+          cache-dependency-path: frontend/pnpm-lock.yaml
+
+      - name: Install dependencies
+        run: pnpm install --frozen-lockfile
+
+      - name: Typecheck
+        run: pnpm run typecheck
+
+      - name: Lint (eslint)
+        run: pnpm run lint
+
+      - name: Run tests
+        run: pnpm run test

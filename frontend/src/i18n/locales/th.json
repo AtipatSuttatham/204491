@@ -1,0 +1,20 @@
+{
+  "app": {
+    "name": "LMS"
+  },
+  "common": {
+    "loading": "กำลังโหลด...",
+    "language": "ภาษา"
+  },
+  "home": {
+    "title": "ยินดีต้อนรับสู่ LMS",
+    "subtitle": "ระบบจัดการการเรียนการสอนออนไลน์",
+    "backendStatus": "สถานะ backend",
+    "backendOk": "เชื่อมต่อสำเร็จ",
+    "backendError": "เชื่อมต่อไม่ได้ — ตรวจสอบว่า backend รันอยู่หรือไม่"
+  },
+  "notFound": {
+    "title": "ไม่พบหน้านี้",
+    "backHome": "กลับหน้าแรก"
+  }
+}
