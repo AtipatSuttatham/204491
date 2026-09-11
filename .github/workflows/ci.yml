@@ -72,6 +72,10 @@ jobs:
 
       - name: Install pnpm
         uses: pnpm/action-setup@v4
+        with:
+          # ระบุ version ตรงๆ — action นี้ auto-detect จาก "packageManager" ใน package.json
+          # ที่ root ของ repo เท่านั้น แต่ของเราอยู่ที่ frontend/package.json
+          version: 12.3.4
 
       - name: Setup Node
         uses: actions/setup-node@v4
